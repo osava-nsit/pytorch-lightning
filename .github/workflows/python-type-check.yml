@@ -17,6 +17,5 @@ jobs:
       - name: Install pyright
         run: |
           npm install pyright
-          alias npm-exec='PATH=$(npm bin):$PATH'
       - name: Run type checking
-        run: npm-exec pyright pytorch_lightning/
+        run: $(npm bin)/pyright pytorch_lightning/
