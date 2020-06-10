@@ -1,0 +1,22 @@
+name: "Python static type checking"
+on: [push, pull_request]
+
+jobs:
+  python_type_checking:
+    name: Python static type checking with Pyright
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v1.1.1
+        with:
+          python-version: 3.8
+      - name: Set up node
+        uses: actions/setup-node@v1
+      - name: Install pyright
+        run: |
+          npm install pyright
+          alias npm-exec='PATH=$(npm bin):$PATH'
+      - name: Run type checking
+        run: npm-exec pyright pytorch_lightning/
