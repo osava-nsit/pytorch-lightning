@@ -17,3 +17,9 @@ jobs:
       - name: Run Black
         run: echo "LGTM"
         # run black --skip-string-normalization --config=pyproject.toml --check . # TODO, uncomment
+      - name: Setup node for type checking
+        uses: actions/setup-node@v1
+      - name: Run type checking
+        run: |
+          npm install pyright
+          pyright pytorch_lightning/
